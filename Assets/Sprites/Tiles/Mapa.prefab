@@ -154,7 +154,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 74ace9f775695d9429f3af41c1c173f3, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 7a15508eaf09a9f4c9fe9e90d9e60d5f, type: 2}
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: d1f67b83d939b2c4595b695b0d99cef4, type: 2}
   - m_RefCount: 1
