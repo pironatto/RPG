@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
 {
 
   private ControleTabuleiro _controleTabuleiro;
-  public bool selecionar;
+  public bool selecionar,clicar;
   private Rigidbody2D rbPlayer;
+  private Animator playerAnimator;
+  public bool Move;
  
 
     // Start is called before the first frame update
@@ -21,42 +23,44 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {       
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        rbPlayer.velocity = new Vector2(h,v);
+    {     
+       playerAnimator = GetComponent<Animator>();
     }
 
-    void Update(){
-     if(selecionar == true){        
-            
-            _controleTabuleiro.Grama[1].SetActive(true);
-            _controleTabuleiro.Grama[2].SetActive(true);
-            _controleTabuleiro.Grama[3].SetActive(true);            
-          
-      }
-       else{
-             _controleTabuleiro.Grama[1].SetActive(false);
-             _controleTabuleiro.Grama[2].SetActive(false);
-              _controleTabuleiro.Grama[3].SetActive(false);    
-       }
+    void Update(){  
 
+        // PARA SELECIONAR O PERSONAGEM
+       if(Input.GetMouseButton(0) && selecionar){
+            clicar = true;  
+         }   
+      }     
+      
+      void LateUpdate() {
+           playerAnimator.SetBool("move",Move);
 
-
-     
     }
 
+      //PARA MOVIMENTAR O PERSONAGEM AO LOCAL DESEJADO, CONFORME DEFINIDO NO GAMECONTROLLER
+     public void MovePlayer(){
+            transform.position = Vector2.MoveTowards(transform.position,new Vector2(_controleTabuleiro.PosicaoFinal.x,_controleTabuleiro.PosicaoFinal.y+0.5f),2* Time.deltaTime);
+            Move = true;
+              if(transform.position.x == _controleTabuleiro.PosicaoFinal.x && transform.position.y == _controleTabuleiro.PosicaoFinal.y+0.5f){
+                Move = false;
+                _controleTabuleiro.selecionado = false;     
+              }
 
-        void OnMouseEnter() {
-         
+             } 
+
+
+        void OnMouseEnter() {        
            selecionar = true;
      }
 
         void OnMouseExit() {
-          selecionar = false;  
-        
+          selecionar = false;        
         }
-    
+
+
+   
 
 }
