@@ -30,12 +30,9 @@ public class GameController : MonoBehaviour
             PosicaoPlayer();
 
             //MOSTRA QUAIS GRAMAS ESTÃO DISPONIVEIS AO CLICAR NO PERSONAGEM
-            if(_playerController.clicar){
-            _controleTabuleiro.Grama[1].SetActive(true);
-            _controleTabuleiro.Grama[2].SetActive(true);
-            _controleTabuleiro.Grama[3].SetActive(true);  
-
-            }
+            if(_playerController.clicar && _controleTabuleiro.selecionado == false){           
+                    _controleTabuleiro.ControleGramaAcesa();
+         }
 
             //PARA MOVIMENTAR O PERSONAGEM AO LOCAL
             if(_controleTabuleiro.clicar){                
@@ -45,11 +42,6 @@ public class GameController : MonoBehaviour
             }
 
     }
-
-
-
-
-
 
     //VERIFICAR EM QUAL GRAMA O PERSONAGEM ESTÁ PISANDO
     void PosicaoPlayer(){

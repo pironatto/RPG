@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour
 {
 
   private ControleTabuleiro _controleTabuleiro;
-  public bool selecionar,clicar;
   private Rigidbody2D rbPlayer;
   private Animator playerAnimator;
+  [HideInInspector]
+  public bool selecionar,clicar;
+  [HideInInspector]
   public bool Move;
  
 
